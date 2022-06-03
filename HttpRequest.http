@@ -1,0 +1,12 @@
+### order get
+GET http://localhost:8080/orders/1
+
+
+### order post
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
