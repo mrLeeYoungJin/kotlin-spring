@@ -2,16 +2,13 @@ package com.lyjguy.kotlinspring.repository
 
 import com.lyjguy.kotlinspring.model.entity.Order
 import com.lyjguy.kotlinspring.model.entity.OrderReceiver
-import com.lyjguy.kotlinspring.service.OrderService
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.TestConstructor
-import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
-import java.time.LocalDateTime
 import java.util.*
 
 @DataJpaTest
@@ -30,7 +27,6 @@ class OrderRepositoryTest(
         val order = Order(
             name = "test",
             status = "ORDER",
-            quantity = 1,
             totalPrice = 1000,
         ).also {
             it.orderReceiver = OrderReceiver(
@@ -58,7 +54,6 @@ class OrderRepositoryTest(
         val newOrder = Order(
             name = "test_${UUID.randomUUID()}",
             status = "ORDER",
-            quantity = 1,
             totalPrice = 1000,
         )
 

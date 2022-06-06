@@ -1,5 +1,6 @@
 package com.lyjguy.kotlinspring.service
 
+import com.lyjguy.kotlinspring.model.dto.ReqOrderDto
 import com.lyjguy.kotlinspring.model.entity.Order
 import com.lyjguy.kotlinspring.model.entity.OrderReceiver
 import com.lyjguy.kotlinspring.model.vo.OrderVO
@@ -24,18 +25,17 @@ class OrderService(
     }
 
     @Transactional
-    fun save() {
+    fun save(reqOrderDto: ReqOrderDto) {
         val order = Order(
-            name = "test",
+            name = reqOrderDto.name,
             status = "ORDER",
-            quantity = 1,
-            totalPrice = 1000,
+            totalPrice = reqOrderDto.totalPrice,
         ).also {
             it.orderReceiver = OrderReceiver(
-                name = "test",
-                address1 = "address1",
-                address2 = "address2",
-                zipcode = "12345",
+                name = reqOrderDto.receiver.name,
+                address1 = reqOrderDto.receiver.address1,
+                address2 = reqOrderDto.receiver.address2,
+                zipcode = reqOrderDto.receiver.zipcode,
             )
         }
         orderRepository.save(order).also {

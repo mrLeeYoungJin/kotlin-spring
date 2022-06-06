@@ -1,10 +1,12 @@
 package com.lyjguy.kotlinspring.controller
 
+import com.lyjguy.kotlinspring.model.dto.ReqOrderDto
 import com.lyjguy.kotlinspring.model.vo.OrderVO
 import com.lyjguy.kotlinspring.service.OrderService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -18,7 +20,7 @@ class OrderController(
     }
 
     @PostMapping("/orders")
-    fun savePost() {
-        orderService.save()
+    fun savePost(@RequestBody reqOrderDto: ReqOrderDto) {
+        orderService.save(reqOrderDto)
     }
 }
