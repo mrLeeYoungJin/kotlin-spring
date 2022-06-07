@@ -2,7 +2,6 @@ package com.lyjguy.kotlinspring.model.dto
 
 data class ReqOrderDto(
     val name: String,
-    val quantity: Int,
     val totalPrice: Int,
     val receiver: ReqOrderReceiverDto
 )

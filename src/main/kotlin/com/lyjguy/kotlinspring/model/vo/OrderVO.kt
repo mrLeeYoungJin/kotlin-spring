@@ -7,7 +7,6 @@ data class OrderVO(
     val id: Long = 0,
     val name: String = "",
     val status: String = "",
-    val quantity: Int = 0,
     val totalPrice: Int = 0,
     val createdAt: LocalDateTime? = null,
     val updatedAt: LocalDateTime? = null,
@@ -15,6 +14,6 @@ data class OrderVO(
 
 fun Order.toOrderVO(): OrderVO {
     return OrderVO(
-        id, name, status, quantity, totalPrice, createdAt, updatedAt
+        id, name, status, totalPrice, createdAt, updatedAt
     )
 }

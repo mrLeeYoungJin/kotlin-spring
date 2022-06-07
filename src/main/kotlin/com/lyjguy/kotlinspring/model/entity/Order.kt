@@ -16,7 +16,6 @@ class Order(
 
     var name: String,
     val status: String,
-    val quantity: Int,
     val totalPrice: Int,
     @CreatedDate
     var createdAt: LocalDateTime = LocalDateTime.now(),
@@ -24,6 +23,6 @@ class Order(
     var updatedAt: LocalDateTime = LocalDateTime.now(),
 ) {
     @OneToOne(mappedBy = "order", fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST])
-    @JoinColumn(name = "orderId", insertable = false, updatable = false)
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
     var orderReceiver: OrderReceiver? = null
 }
