@@ -13,6 +13,7 @@ class Coupon(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
+    val userId: Long,
     var name: String,
     val code: String,
     val discountAmount: Int,

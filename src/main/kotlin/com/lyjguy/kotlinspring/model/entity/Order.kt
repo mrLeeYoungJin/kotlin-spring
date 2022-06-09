@@ -13,7 +13,7 @@ class Order(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-
+    val userId: Long,
     var name: String,
     val status: String,
     val totalPrice: Int,

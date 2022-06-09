@@ -11,7 +11,6 @@ class OrderReceiver(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-
     var orderId: Long = 0,
     var name: String,
     val address1: String,
