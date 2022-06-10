@@ -27,6 +27,7 @@ class OrderService(
     @Transactional
     fun save(reqOrderDto: ReqOrderDto) {
         val order = Order(
+            userId = 1,
             name = reqOrderDto.name,
             status = "ORDER",
             totalPrice = reqOrderDto.totalPrice,

@@ -5,6 +5,7 @@ import java.time.LocalDateTime
 
 data class OrderVO(
     val id: Long = 0,
+    val userId: Long = 0,
     val name: String = "",
     val status: String = "",
     val totalPrice: Int = 0,
@@ -14,6 +15,6 @@ data class OrderVO(
 
 fun Order.toOrderVO(): OrderVO {
     return OrderVO(
-        id, name, status, totalPrice, createdAt, updatedAt
+        id, userId, name, status, totalPrice, createdAt, updatedAt
     )
 }

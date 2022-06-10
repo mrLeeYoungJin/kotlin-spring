@@ -17,6 +17,7 @@ class CouponService(
     @Transactional
     fun save() {
         val coupon = Coupon(
+            userId = 1,
             name = "test",
             code = "code1",
             discountAmount = 1000,
