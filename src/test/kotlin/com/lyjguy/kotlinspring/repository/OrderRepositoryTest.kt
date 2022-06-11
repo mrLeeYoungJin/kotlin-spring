@@ -25,6 +25,7 @@ class OrderRepositoryTest(
     @Transactional
     fun save() {
         val order = Order(
+            userId = 1,
             name = "test",
             status = "ORDER",
             totalPrice = 1000,
@@ -52,6 +53,7 @@ class OrderRepositoryTest(
         }
 
         val newOrder = Order(
+            userId = 1,
             name = "test_${UUID.randomUUID()}",
             status = "ORDER",
             totalPrice = 1000,

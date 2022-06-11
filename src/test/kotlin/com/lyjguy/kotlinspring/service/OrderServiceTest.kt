@@ -16,6 +16,7 @@ class OrderServiceTest(
     @Test
     fun save() {
         val reqOrderDto = ReqOrderDto(
+            userId = 1,
             name = "test",
             totalPrice = 1000,
             receiver = ReqOrderReceiverDto(
