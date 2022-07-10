@@ -1,6 +1,4 @@
-import org.asciidoctor.gradle.jvm.AsciidoctorTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("org.springframework.boot") version "2.7.0"
@@ -22,7 +20,7 @@ configurations {
     }
 }
 
-val snippetsDir by extra { file("build/generated-snippets") }
+val asciidoctorExtensions: Configuration by configurations.creating
 
 repositories {
     mavenCentral()
@@ -35,6 +33,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    asciidoctorExtensions("org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.5.RELEASE")
 
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
@@ -57,19 +56,18 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-val test = tasks.withType<Test> {
-    useJUnitPlatform()
-    outputs.dir(snippetsDir)
-}
-
-val asciidoctor = tasks.withType<AsciidoctorTask> {
-    inputs.dir(snippetsDir)
-    dependsOn(test)
-}
-
-tasks.withType<BootJar> {
-    dependsOn(asciidoctor)
-    from("$snippetsDir/html5") {
-        into("static/docs")
+tasks.asciidoctor {
+    dependsOn(tasks.test)
+    configurations(asciidoctorExtensions.name)
+    baseDirFollowsSourceDir()
+    doLast {
+        copy {
+            from("$outputDir")
+            into("src/main/resources/static/docs")
+        }
     }
+}
+
+tasks.build {
+    dependsOn(tasks.asciidoctor)
 }
