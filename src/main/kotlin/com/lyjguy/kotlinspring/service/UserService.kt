@@ -10,6 +10,10 @@ class UserService(
     private val userRepository: UserRepository,
 ) {
 
+    fun findById(id: Long): User? {
+        return userRepository.findById(id).orElse(null)
+    }
+
     @Transactional
     fun save() {
         val user = User(
