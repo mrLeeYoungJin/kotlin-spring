@@ -1,0 +1,18 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+= Test API Document
+:doctype: book
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+[[getUser]]
+== getUser API
+//include::{snippets}/getUser/curl-request.adoc[]
+//include::{snippets}/getUser/curl-request.adoc[]
+//include::{snippets}/getUser/http-request.adoc[]
+//include::{snippets}/getUser/http-response.adoc[]
+//include::{snippets}/getUser/response-body.adoc[]
+include::getUser.adoc[]

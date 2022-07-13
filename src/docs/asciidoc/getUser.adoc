@@ -1,0 +1,1 @@
+operation::getUser[snippets='curl-request,http-request,path-parameters,http-response,response-fields']
