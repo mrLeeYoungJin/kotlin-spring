@@ -21,8 +21,8 @@ class Order(
     var createdAt: LocalDateTime = LocalDateTime.now(),
     @LastModifiedDate
     var updatedAt: LocalDateTime = LocalDateTime.now(),
-) {
-    @OneToOne(mappedBy = "order", fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST])
-    @JoinColumn(name = "order_id", insertable = false, updatable = false)
-    var orderReceiver: OrderReceiver? = null
+    ) {
+    @JoinColumn(insertable = false, updatable = false)
+    @OneToOne(mappedBy = "order", optional = false, fetch = FetchType.LAZY)
+    lateinit var orderReceiver: OrderReceiver
 }

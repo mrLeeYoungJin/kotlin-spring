@@ -1,7 +1,6 @@
 package com.lyjguy.kotlinspring.model.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
-import com.lyjguy.kotlinspring.model.entity.Order
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -11,16 +10,16 @@ class OrderReceiver(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-    var orderId: Long = 0,
+    val orderId: Long,
     var name: String,
-    val address1: String,
-    val address2: String,
-    val zipcode: String,
+    var address1: String,
+    var address2: String,
+    var zipcode: String,
     val createAt: LocalDateTime = LocalDateTime.now(),
     val updatedAt: LocalDateTime? = null,
-) {
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderId", insertable = false, updatable = false, nullable = false)
     @JsonBackReference
-    lateinit var order: Order
-}
+    var order: Order
+)
