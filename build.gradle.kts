@@ -10,6 +10,14 @@ plugins {
     kotlin("kapt") version "1.7.0"
 }
 
+allOpen {
+    annotation("javax.persistence.Entity")
+}
+
+noArg {
+    annotation("javax.persistence.Entity")
+}
+
 group = "com.lyjguy"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
