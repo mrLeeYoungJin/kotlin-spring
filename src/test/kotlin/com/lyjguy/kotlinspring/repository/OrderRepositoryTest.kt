@@ -29,17 +29,19 @@ class OrderRepositoryTest(
             name = "test",
             status = "ORDER",
             totalPrice = 1000,
-        ).also {
-            it.orderReceiver = OrderReceiver(
+        )
+
+        orderRepository.save(order).also {
+            val orderReceiver = OrderReceiver(
+                orderId = it.id,
                 name = "test",
                 address1 = "address1",
                 address2 = "address2",
                 zipcode = "12345",
+                order = it,
             )
-        }
-        orderRepository.save(order).also {
-            it.orderReceiver?.orderId = it.id
-            orderReceiverRepository.save(it.orderReceiver!!)
+            val savedOrderReceiver = orderReceiverRepository.save(orderReceiver)
+            order.orderReceiver = orderReceiver
         }
     }
 
