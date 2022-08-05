@@ -7,6 +7,7 @@ import com.lyjguy.kotlinspring.model.vo.OrderVO
 import com.lyjguy.kotlinspring.model.vo.toOrderVO
 import com.lyjguy.kotlinspring.repository.OrderRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 
 @Service
@@ -31,16 +32,19 @@ class OrderService(
             name = reqOrderDto.name,
             status = "ORDER",
             totalPrice = reqOrderDto.totalPrice,
-        ).also {
-            it.orderReceiver = OrderReceiver(
+        )
+
+        orderRepository.save(order).also {
+            val orderReceiver = OrderReceiver(
+                orderId = it.id,
                 name = reqOrderDto.receiver.name,
                 address1 = reqOrderDto.receiver.address1,
                 address2 = reqOrderDto.receiver.address2,
                 zipcode = reqOrderDto.receiver.zipcode,
+                order = it,
             )
-        }
-        orderRepository.save(order).also {
-            orderReceiverService.save(it.orderReceiver!!)
+            val savedOrderReceiver = orderReceiverService.save(orderReceiver)
+            order.orderReceiver = orderReceiver
         }
     }
 }
