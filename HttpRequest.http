@@ -1,12 +1,23 @@
 ### order get
-GET http://localhost:8080/orders/1
+GET http://localhost:8080/api/v1/orders/6
 
 
 ### order post
-POST http://localhost:8080/orders
+POST http://localhost:8080/api/v1/orders
 Content-Type: application/json
 
 {
-  "id": 999,
-  "value": "content"
+  "userId": 1234,
+  "name": "test",
+  "totalPrice": 1000,
+  "receiver": {
+    "name": "test1",
+    "address1": "address1",
+    "address2": "address2",
+    "zipcode": "zipcode"
+  }
 }
+
+
+### order_receiver get
+GET http://localhost:8080/api/v1/order_receivers/1
