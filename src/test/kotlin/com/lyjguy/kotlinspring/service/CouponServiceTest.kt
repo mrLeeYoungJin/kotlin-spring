@@ -1,16 +1,20 @@
 package com.lyjguy.kotlinspring.service
 
+import com.lyjguy.kotlinspring.repository.CouponRepository
+import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.impl.annotations.MockK
+import io.mockk.junit5.MockKExtension
 import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.TestConstructor
+import org.junit.jupiter.api.extension.ExtendWith
 
-@SpringBootTest
-@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-class CouponServiceTest(
-    val couponService: CouponService
-) {
+@ExtendWith(MockKExtension::class)
+class CouponServiceTest {
+    @MockK
+    lateinit var couponRepository: CouponRepository
+
+    @InjectMockKs
+    lateinit var couponService: CouponService
 
     @Test
     fun save() {
