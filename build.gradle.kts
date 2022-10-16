@@ -4,6 +4,7 @@ plugins {
     id("org.springframework.boot") version "2.7.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.asciidoctor.jvm.convert") version "3.3.2"
+    id("org.flywaydb.flyway") version "9.4.0"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
     kotlin("plugin.jpa") version "1.6.21"
@@ -41,7 +42,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    asciidoctorExtensions("org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.5.RELEASE")
+    implementation("org.flywaydb:flyway-core:${Dependency.FLYWAY_VERSION}")
+
+    asciidoctorExtensions("org.springframework.restdocs:spring-restdocs-asciidoctor:${Dependency.ASCIIDOCTOR_VERSION}")
 
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
@@ -49,7 +52,7 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.mockk:mockk:1.12.4")
+    testImplementation("io.mockk:mockk:${Dependency.MOCKK_VERSION}")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 
