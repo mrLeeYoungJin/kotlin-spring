@@ -7,7 +7,6 @@ import com.lyjguy.kotlinspring.model.vo.OrderVO
 import com.lyjguy.kotlinspring.model.vo.toOrderVO
 import com.lyjguy.kotlinspring.repository.OrderRepository
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 
 @Service
@@ -23,6 +22,13 @@ class OrderService(
             return OrderVO()
         }
         return order.get().toOrderVO()
+    }
+
+    @Transactional
+    fun getUserOrderList(userId: Long): List<OrderVO> {
+        val orderList = orderRepository.findAllByUserId(userId)
+
+        return orderList.map { it.toOrderVO() }
     }
 
     @Transactional
