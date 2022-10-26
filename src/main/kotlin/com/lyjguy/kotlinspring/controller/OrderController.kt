@@ -16,6 +16,11 @@ class OrderController(
         return orderService.getOrder(orderId = orderId)
     }
 
+    @GetMapping("/{id}")
+    fun getUserOrderList(@RequestParam("userId") userId: Long): List<OrderVO> {
+        return orderService.getUserOrderList(userId)
+    }
+
     @PostMapping
     fun savePost(@RequestBody reqOrderDto: ReqOrderDto) {
         orderService.save(reqOrderDto)
